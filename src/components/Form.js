@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import useCurrency from '../hooks/useCurrency'
 import useCryptocurrency from '../hooks/useCryptocurrency'
@@ -23,11 +23,10 @@ const Button = styled.input`
 `
 //
 
-
 const Form = () => {
-
-//State list of cryptocurrencies, setListCrypto -> save List
-const [listcrypto, setListCrypto] = useState([])
+  //State list of cryptocurrencies, setListCrypto -> save List
+  const [listcrypto, setListCrypto] = useState([])
+  const [error, setError] = useState(false)
 
   const CURRENCIES = [
     { code: 'USD', name: 'United States Dollar' },
@@ -51,22 +50,39 @@ const [listcrypto, setListCrypto] = useState([])
   const [cryptocurrency, SelectCrypto] = useCryptocurrency(
     'Select your Cryptocurrency',
     '',
-    listcrypto
+    listcrypto,
   )
 
-//Ejecute call api, use axios
-useEffect(()=>{
- const quoteAPI= async () => {
-const url = 'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD'
+  //Ejecute call api, use axios
+  useEffect(() => {
+    const quoteAPI = async () => {
+      const url =
+        'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD'
 
-const result = await axios.get(url)
-setListCrypto(result.data.Data)
- }
- quoteAPI()
-}, [])
+      const result = await axios.get(url)
+      setListCrypto(result.data.Data)
+    }
+    quoteAPI()
+  }, [])
+
+  //When user to submit
+  const quoteCurrency = (e) => {
+    e.preventDefault()
+
+    //validate
+    if (currency === '' || cryptocurrency === '') {
+      setError(true)
+      return
+    }
+
+    //Pass data to principal component
+    setError(false)
+  }
 
   return (
-    <form>
+    <form onSubmit={quoteCurrency}>
+      {error ? 'There is an error' : null}
+
       <SelectCurrency />
       <SelectCrypto />
 
