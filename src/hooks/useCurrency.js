@@ -27,7 +27,7 @@ const useCurrency = (label, stateInitial, options) => {
   //State of own hooks
   const [state, setState] = useState(stateInitial)
 
-  const ToSelect = () => (
+  const SelectCurrency = () => (
     <Fragment>
       <Label>{label}</Label>
       <Select
@@ -45,7 +45,7 @@ const useCurrency = (label, stateInitial, options) => {
   )
 
   // Retur state, interface and function that modifies the state
-  return [state, ToSelect, setState]
+  return [state, SelectCurrency, setState]
 }
 
 export default useCurrency
