@@ -32,6 +32,7 @@ const useCurrency = (label, stateInitial, options) => {
       <Label>{label}</Label>
       <Select
       onChange={ e=> setState(e.target.value)}
+      value= {state}
       >
         <option value="">- Select -</option>
         

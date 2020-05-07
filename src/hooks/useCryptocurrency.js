@@ -25,7 +25,7 @@ text-align-last: center;
 
 const useCryptocurrency = (label, stateInitial, options) => {
  
-    console.log(options)
+    // console.log(options)
     const [state, setState] = useState(stateInitial)
 
     const SelectCrypto = () => (
@@ -33,14 +33,15 @@ const useCryptocurrency = (label, stateInitial, options) => {
         <Label>{label}</Label>
         <Select
         onChange={ e=> setState(e.target.value)}
+        value= {state}
         >
           <option value="">- Select -</option>
           
-          {/* {options.map((option) => (
-            <option key={option.code} value={option.code}>
-              {option.name}
+          {options.map((option) => (
+            <option key={option.CoinInfo.Id} value={option.CoinInfo.Name}>
+              {option.CoinInfo.FullName}
             </option>
-          ))} */}
+          ))}
         </Select>
       </Fragment>
     )
