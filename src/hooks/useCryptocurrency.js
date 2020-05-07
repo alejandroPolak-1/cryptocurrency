@@ -25,6 +25,7 @@ text-align-last: center;
 
 const useCryptocurrency = (label, stateInitial, options) => {
  
+    console.log(options)
     const [state, setState] = useState(stateInitial)
 
     const SelectCrypto = () => (
