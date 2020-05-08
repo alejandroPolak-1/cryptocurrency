@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from '@emotion/styled'
 import image from './cryptologo.png'
 import Form from './components/Form'
@@ -40,6 +40,13 @@ function App() {
   //State save currency and cryptocurrency
   const [currency, setCurrency] = useState('')
   const [cryptocurrency, setCryptocurrency] = useState('')
+
+  useEffect(() =>{
+
+    //we avoid execution the first time
+if(currency === '') return;
+console.log('cotizando...')
+  },[currency,cryptocurrency])
 
   return (
     <Conteiner>
