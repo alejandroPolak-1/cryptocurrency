@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import image from './cryptologo.png'
 import Form from './components/Form'
@@ -37,6 +37,10 @@ const Heading = styled.h1`
 `
 
 function App() {
+  //State save currency and cryptocurrency
+  const [currency, setCurrency] = useState('')
+  const [cryptocurrency, setCryptocurrency] = useState('')
+
   return (
     <Conteiner>
       <div>
@@ -44,7 +48,8 @@ function App() {
       </div>
       <div>
         <Heading> Cryptocurrencies Quotes </Heading>
-        <Form />
+        <Form setCurrency={setCurrency} 
+        setCryptocurrency={setCryptocurrency} />
       </div>
     </Conteiner>
   )

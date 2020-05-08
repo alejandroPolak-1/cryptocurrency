@@ -24,7 +24,7 @@ const Button = styled.input`
 `
 //
 
-const Form = () => {
+const Form = ({setCurrency, setCryptocurrency}) => {
   //State list of cryptocurrencies, setListCrypto -> save List
   const [listcrypto, setListCrypto] = useState([])
   const [error, setError] = useState(false)
@@ -76,8 +76,10 @@ const Form = () => {
       return
     }
 
-    //Pass data to principal component
+    //Pass data to principal component (currency annd ryptocurrency come from custom hooks)
     setError(false)
+    setCurrency(currency)
+    setCryptocurrency(cryptocurrency)
   }
 
   return (
