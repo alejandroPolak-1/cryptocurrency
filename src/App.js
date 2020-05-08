@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import axios from 'axios'
 import image from './cryptologo.png'
 import Form from './components/Form'
+import Quotation from './components/Quotation'
 
 const Conteiner = styled.div`
   max-width: 1020px;
@@ -41,6 +42,7 @@ function App() {
   //State save currency and cryptocurrency
   const [currency, setCurrency] = useState('')
   const [cryptocurrency, setCryptocurrency] = useState('')
+  const [result, setResult] = useState({})
 
   useEffect(() => {
     const quoteCryptocurrency = async () => {
@@ -50,7 +52,7 @@ function App() {
       const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cryptocurrency}&tsyms=${currency}`
       const result = await axios.get(url)
 
-      console.log(result.data.DISPLAY[cryptocurrency][currency])
+      setResult(result.data.DISPLAY[cryptocurrency][currency])
     }
     quoteCryptocurrency()
   }, [currency, cryptocurrency])
@@ -64,6 +66,9 @@ function App() {
         <Heading> Cryptocurrencies Quotes </Heading>
         <Form setCurrency={setCurrency} setCryptocurrency={setCryptocurrency} />
       </div>
+      <Quotation
+        result= {result}
+      />
     </Conteiner>
   )
 }
